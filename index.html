@@ -73,7 +73,6 @@ button { font: inherit; }
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
-
   border: 0;
   border-radius: 50%;
   padding: 0;
@@ -91,7 +90,6 @@ button { font: inherit; }
   text-align: center;
 
   box-shadow: inset 0 0 22px rgba(0,0,0,.9);
-
   animation: holeGrows 2.8s 1.1s ease-in-out forwards;
 }
 
@@ -154,6 +152,8 @@ body.entering .entrance {
   transform: translateY(8px);
 }
 
+/* ───── 月 ───── */
+
 .moon {
   position: absolute;
   right: 13vw;
@@ -174,13 +174,10 @@ body.entering .entrance {
 
   opacity: 0;
   transform: translateY(-8px);
-  transition:
-    right 2s ease,
-    top 2s ease,
-    transform 2s ease;
 }
 
-/* 白には輪郭を作らない */
+/* ───── 白 ───── */
+
 .white-presence {
   position: absolute;
   left: -65vw;
@@ -211,34 +208,29 @@ body.entering .entrance {
   opacity: 0;
 }
 
-/* ───── 会話 ───── */
-
-.dialogue {
-  position: absolute;
-  left: 9vw;
-  bottom: 12vh;
-  width: min(560px,82vw);
-  min-height: 150px;
-  z-index: 8;
-  pointer-events: none;
-}
+/* ───── セリフ ───── */
 
 .line {
   position: absolute;
-  left: 0;
-  bottom: 0;
+  z-index: 8;
   margin: 0;
-
-  font-size: clamp(18px,2.5vw,25px);
-  line-height: 1.9;
+  font-size: clamp(17px,2.2vw,24px);
+  line-height: 1.8;
   letter-spacing: .06em;
-
   opacity: 0;
-  transform: translateY(7px);
 }
 
-.line.white-line {
-  left: 5vw;
+/* 月の言葉は月のそば */
+.moon-line {
+  right: 23vw;
+  top: 28vh;
+  text-align: right;
+}
+
+/* 白の言葉は白のそば */
+.white-line {
+  left: 24vw;
+  bottom: 25vh;
 }
 
 /* ───── 時間 ───── */
@@ -271,42 +263,32 @@ body.night .roll-text {
     fadeOut 1.3s 10.8s ease forwards;
 }
 
-/* 会話開始 */
+/* 月 → 白 → 月 → 白 */
 
 body.night .l1 {
   animation:
-    lineIn .8s 12.3s ease forwards,
-    lineOut .6s 14.3s ease forwards;
+    dialogueIn .8s 12.2s ease forwards,
+    dialogueDim .7s 14.8s ease forwards;
 }
 
 body.night .l2 {
   animation:
-    lineIn .8s 15s ease forwards,
-    lineOut .6s 16.8s ease forwards;
+    dialogueIn .8s 14.3s ease forwards,
+    dialogueDim .7s 17s ease forwards;
 }
 
 body.night .l3 {
   animation:
-    lineIn .8s 17.6s ease forwards,
-    lineOut .6s 19.5s ease forwards;
+    dialogueIn .8s 16.4s ease forwards,
+    dialogueDim .7s 19.2s ease forwards;
 }
 
 body.night .l4 {
   animation:
-    lineIn .8s 20.2s ease forwards;
+    dialogueIn .8s 18.6s ease forwards;
 }
 
-/* 「知らない」のあと月が少し近づく */
-body.night .moon {
-  --moon-end-right: 13vw;
-}
-
-body.after-dialogue .moon {
-  right: 20vw;
-  top: 25vh;
-}
-
-/* ───── animations ───── */
+/* ───── animation ───── */
 
 @keyframes revealNight {
   to { opacity: 0; }
@@ -339,21 +321,10 @@ body.after-dialogue .moon {
 
   12% { opacity: .25; }
 
-  25% {
-    transform: translateY(-1vh) rotate(2deg);
-  }
-
-  42% {
-    transform: translateY(3vh) rotate(-2deg);
-  }
-
-  60% {
-    transform: translateY(-1vh) rotate(2deg);
-  }
-
-  78% {
-    transform: translateY(2vh) rotate(-1deg);
-  }
+  25% { transform: translateY(-1vh) rotate(2deg); }
+  42% { transform: translateY(3vh) rotate(-2deg); }
+  60% { transform: translateY(-1vh) rotate(2deg); }
+  78% { transform: translateY(2vh) rotate(-1deg); }
 
   100% {
     left: 5vw;
@@ -370,18 +341,20 @@ body.after-dialogue .moon {
   to { opacity: 0; }
 }
 
-@keyframes lineIn {
+@keyframes dialogueIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes lineOut {
-  to {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
+/* 前の言葉は消さず、少しだけ残す */
+@keyframes dialogueDim {
+  to { opacity: .22; }
 }
 
 /* ───── モバイル ───── */
@@ -409,8 +382,14 @@ body.after-dialogue .moon {
     height: 48vh;
   }
 
-  .dialogue {
-    bottom: 10vh;
+  .moon-line {
+    right: 25vw;
+    top: 31vh;
+  }
+
+  .white-line {
+    left: 18vw;
+    bottom: 22vh;
   }
 }
 </style>
@@ -433,12 +412,25 @@ body.after-dialogue .moon {
     ころ。ころころ。
   </div>
 
-  <div class="dialogue">
-    <p class="line l1">「お前も来たのか」</p>
-    <p class="line white-line l2">「うん」</p>
-    <p class="line l3">「何しに？」</p>
-    <p class="line white-line l4">「知らない」</p>
-  </div>
+  <!-- 月 -->
+  <p class="line moon-line l1">
+    「お前も来たのか」
+  </p>
+
+  <!-- 白 -->
+  <p class="line white-line l2">
+    「うん」
+  </p>
+
+  <!-- 月 -->
+  <p class="line moon-line l3">
+    「何しに？」
+  </p>
+
+  <!-- 白 -->
+  <p class="line white-line l4">
+    「知らない」
+  </p>
 
   <div class="night-cover"></div>
 
@@ -472,10 +464,6 @@ hole.addEventListener("click", () => {
   setTimeout(() => {
     document.body.classList.add("night");
   }, 1500);
-
-  setTimeout(() => {
-    document.body.classList.add("after-dialogue");
-  }, 23000);
 
 });
 </script>
