@@ -220,14 +220,12 @@ body.entering .entrance {
   opacity: 0;
 }
 
-/* 月の言葉は月のそば */
 .moon-line {
   right: 23vw;
   top: 28vh;
   text-align: right;
 }
 
-/* 白の言葉は白のそば */
 .white-line {
   left: 24vw;
   bottom: 25vh;
@@ -267,28 +265,28 @@ body.night .roll-text {
 
 body.night .l1 {
   animation:
-    dialogueIn .8s 12.2s ease forwards,
-    dialogueDim .7s 14.8s ease forwards;
+    dialogueIn .7s 12.2s ease forwards,
+    dialogueOut .55s 14.0s ease forwards;
 }
 
 body.night .l2 {
   animation:
-    dialogueIn .8s 14.3s ease forwards,
-    dialogueDim .7s 17s ease forwards;
+    dialogueIn .7s 14.7s ease forwards,
+    dialogueOut .55s 16.4s ease forwards;
 }
 
 body.night .l3 {
   animation:
-    dialogueIn .8s 16.4s ease forwards,
-    dialogueDim .7s 19.2s ease forwards;
+    dialogueIn .7s 17.1s ease forwards,
+    dialogueOut .55s 18.9s ease forwards;
 }
 
 body.night .l4 {
   animation:
-    dialogueIn .8s 18.6s ease forwards;
+    dialogueIn .7s 19.6s ease forwards;
 }
 
-/* ───── animation ───── */
+/* ───── animations ───── */
 
 @keyframes revealNight {
   to { opacity: 0; }
@@ -352,9 +350,15 @@ body.night .l4 {
   }
 }
 
-/* 前の言葉は消さず、少しだけ残す */
-@keyframes dialogueDim {
-  to { opacity: .22; }
+@keyframes dialogueOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
 }
 
 /* ───── モバイル ───── */
@@ -412,22 +416,18 @@ body.night .l4 {
     ころ。ころころ。
   </div>
 
-  <!-- 月 -->
   <p class="line moon-line l1">
     「お前も来たのか」
   </p>
 
-  <!-- 白 -->
   <p class="line white-line l2">
     「うん」
   </p>
 
-  <!-- 月 -->
   <p class="line moon-line l3">
     「何しに？」
   </p>
 
-  <!-- 白 -->
   <p class="line white-line l4">
     「知らない」
   </p>
@@ -435,7 +435,6 @@ body.night .l4 {
   <div class="night-cover"></div>
 
 </section>
-
 
 <main class="entrance">
 
@@ -452,7 +451,6 @@ body.night .l4 {
   </div>
 
 </main>
-
 
 <script>
 const hole = document.getElementById("hole");
