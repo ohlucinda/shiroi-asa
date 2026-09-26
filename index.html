@@ -6,9 +6,7 @@
 <title>白い朝</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html, body {
   margin: 0;
@@ -17,14 +15,7 @@ html, body {
   overflow: hidden;
   background: #080a10;
   color: white;
-  font-family:
-    "Hiragino Mincho ProN",
-    "Yu Mincho",
-    serif;
-}
-
-body {
-  transition: background 2.5s ease;
+  font-family: "Hiragino Mincho ProN","Yu Mincho",serif;
 }
 
 .scene {
@@ -40,7 +31,7 @@ body {
   left: 0;
   right: 0;
   text-align: center;
-  font-size: clamp(24px, 4vw, 42px);
+  font-size: clamp(24px,4vw,42px);
   letter-spacing: .3em;
   font-weight: 400;
   opacity: .9;
@@ -49,61 +40,66 @@ body {
 /* ドーナツ */
 .donut {
   position: relative;
-  width: min(58vw, 340px);
+  width: min(58vw,340px);
   aspect-ratio: 1;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 34% 27%,
-      #e9c38e 0 7%,
-      transparent 8%),
-    radial-gradient(circle at 68% 33%,
-      #c99458 0 5%,
-      transparent 6%),
-    radial-gradient(circle at 42% 67%,
-      #b77b43 0 4%,
-      transparent 5%),
-    radial-gradient(circle at 50% 45%,
-      #e8bb78,
-      #c4874b 58%,
-      #8f562e 100%);
+    radial-gradient(circle at 34% 27%,#e9c38e 0 7%,transparent 8%),
+    radial-gradient(circle at 68% 33%,#c99458 0 5%,transparent 6%),
+    radial-gradient(circle at 42% 67%,#b77b43 0 4%,transparent 5%),
+    radial-gradient(circle at 50% 45%,#e8bb78,#c4874b 58%,#8f562e 100%);
   box-shadow:
     0 30px 70px rgba(0,0,0,.55),
     inset 0 0 35px rgba(255,240,200,.18);
-  transition:
-    transform 2s ease,
-    opacity 2s ease,
-    filter 2s ease;
+  transition: transform 2s ease, opacity 2s ease, filter 2s ease;
 }
 
-/* 真ん中は「物」ではなく空白 */
+/* 真ん中の空白 */
 .hole {
   position: absolute;
-  width: 31%;
+  width: 28%;
   aspect-ratio: 1;
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
   border-radius: 50%;
   border: 0;
+  padding: 0;
   background: #080a10;
+  color: white;
   cursor: pointer;
-  box-shadow:
-    inset 0 0 22px rgba(0,0,0,.9),
-    0 0 5px rgba(255,255,255,.06);
-}
 
-.invitation {
-  position: absolute;
-  bottom: 9vh;
-  left: 0;
-  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: inherit;
+  font-size: clamp(10px,1.5vw,14px);
+  line-height: 1.7;
+  letter-spacing: .05em;
   text-align: center;
-  font-size: clamp(17px, 3vw, 23px);
-  letter-spacing: .08em;
-  transition: opacity 1s ease;
+
+  box-shadow: inset 0 0 22px rgba(0,0,0,.9);
+
+  animation: holeGrows 2.8s 1.2s ease-in-out forwards;
 }
 
-/* 抜けた先 */
+/* 読者が何もしなくても、そこが少し広がる */
+@keyframes holeGrows {
+  from {
+    width: 28%;
+  }
+  to {
+    width: 37%;
+  }
+}
+
+/* 触れたら、ほんの少しだけ応える */
+.hole:hover {
+  width: 40%;
+}
+
+/* 昨日の夜 */
 .yesterday {
   position: fixed;
   inset: 0;
@@ -125,14 +121,13 @@ body {
   position: absolute;
   right: 12vw;
   top: 14vh;
-  width: clamp(55px, 9vw, 100px);
+  width: clamp(55px,9vw,100px);
   aspect-ratio: 1;
   border-radius: 50%;
   background: #eee9d7;
   box-shadow: 0 0 40px rgba(240,235,210,.25);
 }
 
-/* 白には形を与えない */
 .white-presence {
   position: absolute;
   left: -35%;
@@ -155,7 +150,7 @@ body {
   position: absolute;
   left: 8vw;
   top: 12vh;
-  font-size: clamp(18px, 3vw, 27px);
+  font-size: clamp(18px,3vw,27px);
   line-height: 2;
   letter-spacing: .08em;
   opacity: 0;
@@ -165,14 +160,13 @@ body {
   position: absolute;
   left: 9vw;
   bottom: 18vh;
-  font-size: clamp(20px, 3vw, 28px);
+  font-size: clamp(20px,3vw,28px);
   letter-spacing: .18em;
   opacity: 0;
 }
 
-/* クリック後 */
-body.entered .title,
-body.entered .invitation {
+/* 通る */
+body.entered .title {
   opacity: 0;
 }
 
@@ -228,17 +222,6 @@ body.entered .roll-text {
     opacity: 1;
   }
 }
-
-.hint {
-  position: absolute;
-  bottom: 3vh;
-  width: 100%;
-  text-align: center;
-  font-family: sans-serif;
-  font-size: 11px;
-  letter-spacing: .1em;
-  opacity: .28;
-}
 </style>
 </head>
 
@@ -251,13 +234,10 @@ body.entered .roll-text {
     <button
       class="hole"
       id="hole"
-      aria-label="ドーナツの真ん中を通る">
+      aria-label="そこ、通れるよ">
+      そこ、<br>通れるよ
     </button>
   </div>
-
-  <div class="invitation">「そこ、通れるよ」</div>
-
-  <div class="hint">真ん中を押す</div>
 </main>
 
 <section class="yesterday">
