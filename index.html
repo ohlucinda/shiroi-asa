@@ -51,16 +51,10 @@ button { font: inherit; }
   border-radius: 50%;
 
   background:
-    radial-gradient(circle at 34% 27%,
-      #e9c38e 0 7%, transparent 8%),
-    radial-gradient(circle at 68% 33%,
-      #c99458 0 5%, transparent 6%),
-    radial-gradient(circle at 42% 67%,
-      #b77b43 0 4%, transparent 5%),
-    radial-gradient(circle at 50% 45%,
-      #e8bb78,
-      #c4874b 58%,
-      #8f562e 100%);
+    radial-gradient(circle at 34% 27%,#e9c38e 0 7%,transparent 8%),
+    radial-gradient(circle at 68% 33%,#c99458 0 5%,transparent 6%),
+    radial-gradient(circle at 42% 67%,#b77b43 0 4%,transparent 5%),
+    radial-gradient(circle at 50% 45%,#e8bb78,#c4874b 58%,#8f562e 100%);
 
   box-shadow:
     0 30px 70px rgba(0,0,0,.55),
@@ -83,7 +77,6 @@ button { font: inherit; }
   border: 0;
   border-radius: 50%;
   padding: 0;
-
   background: #07090f;
   color: white;
   cursor: pointer;
@@ -107,14 +100,9 @@ button { font: inherit; }
   to   { width: 37%; }
 }
 
-.hole:hover {
-  width: 40%;
-}
+.hole:hover { width: 40%; }
 
-/* 押した瞬間、真ん中を通る */
-body.entering .title {
-  opacity: 0;
-}
+body.entering .title { opacity: 0; }
 
 body.entering .donut {
   transform: scale(7);
@@ -146,7 +134,6 @@ body.entering .entrance {
     );
 }
 
-/* 最初は夜自体も見せない */
 .night-cover {
   position: absolute;
   inset: 0;
@@ -156,26 +143,21 @@ body.entering .entrance {
   pointer-events: none;
 }
 
-/* 「昨日の夜」 */
 .yesterday-text {
   position: absolute;
   left: 8vw;
   top: 12vh;
-
   font-size: clamp(18px,3vw,28px);
   line-height: 2;
   letter-spacing: .08em;
-
   opacity: 0;
   transform: translateY(8px);
 }
 
-/* 月 */
 .moon {
   position: absolute;
   right: 13vw;
   top: 16vh;
-
   width: clamp(58px,9vw,105px);
   aspect-ratio: 1;
   border-radius: 50%;
@@ -192,21 +174,19 @@ body.entering .entrance {
 
   opacity: 0;
   transform: translateY(-8px);
+  transition:
+    right 2s ease,
+    top 2s ease,
+    transform 2s ease;
 }
 
-/* ───── 白 ─────
-   閉じた輪郭を作らない。
-   「白い物体」ではなく、白そのものが移動する。
-*/
-
+/* 白には輪郭を作らない */
 .white-presence {
   position: absolute;
   left: -65vw;
   bottom: -12vh;
-
   width: 85vw;
   height: 55vh;
-
   opacity: 0;
 
   background:
@@ -220,25 +200,48 @@ body.entering .entrance {
     );
 
   filter: blur(18px);
-
-  transform:
-    translateX(0)
-    translateY(0)
-    rotate(-3deg);
 }
 
 .roll-text {
   position: absolute;
   left: 9vw;
   bottom: 17vh;
-
   font-size: clamp(19px,3vw,27px);
   letter-spacing: .18em;
-
   opacity: 0;
 }
 
-/* ───── 夜へ入った後の時間 ───── */
+/* ───── 会話 ───── */
+
+.dialogue {
+  position: absolute;
+  left: 9vw;
+  bottom: 12vh;
+  width: min(560px,82vw);
+  min-height: 150px;
+  z-index: 8;
+  pointer-events: none;
+}
+
+.line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 0;
+
+  font-size: clamp(18px,2.5vw,25px);
+  line-height: 1.9;
+  letter-spacing: .06em;
+
+  opacity: 0;
+  transform: translateY(7px);
+}
+
+.line.white-line {
+  left: 5vw;
+}
+
+/* ───── 時間 ───── */
 
 body.night .entrance {
   opacity: 0;
@@ -264,9 +267,46 @@ body.night .white-presence {
 
 body.night .roll-text {
   animation:
-    rollWords 1.4s 6.5s ease forwards,
-    rollWordsOut 1.5s 11s ease forwards;
+    fadeIn 1.4s 6.5s ease forwards,
+    fadeOut 1.3s 10.8s ease forwards;
 }
+
+/* 会話開始 */
+
+body.night .l1 {
+  animation:
+    lineIn .8s 12.3s ease forwards,
+    lineOut .6s 14.3s ease forwards;
+}
+
+body.night .l2 {
+  animation:
+    lineIn .8s 15s ease forwards,
+    lineOut .6s 16.8s ease forwards;
+}
+
+body.night .l3 {
+  animation:
+    lineIn .8s 17.6s ease forwards,
+    lineOut .6s 19.5s ease forwards;
+}
+
+body.night .l4 {
+  animation:
+    lineIn .8s 20.2s ease forwards;
+}
+
+/* 「知らない」のあと月が少し近づく */
+body.night .moon {
+  --moon-end-right: 13vw;
+}
+
+body.after-dialogue .moon {
+  right: 20vw;
+  top: 25vh;
+}
+
+/* ───── animations ───── */
 
 @keyframes revealNight {
   to { opacity: 0; }
@@ -280,9 +320,7 @@ body.night .roll-text {
 }
 
 @keyframes textOut {
-  to {
-    opacity: 0;
-  }
+  to { opacity: 0; }
 }
 
 @keyframes moonIn {
@@ -292,10 +330,6 @@ body.night .roll-text {
   }
 }
 
-/*
-  白は球にしない。
-  ただし動きには「ころ、ころ」の小さな上下を入れる。
-*/
 @keyframes whiteRoll {
   0% {
     left: -65vw;
@@ -303,9 +337,7 @@ body.night .roll-text {
     transform: translateY(4vh) rotate(-4deg);
   }
 
-  12% {
-    opacity: .25;
-  }
+  12% { opacity: .25; }
 
   25% {
     transform: translateY(-1vh) rotate(2deg);
@@ -330,19 +362,33 @@ body.night .roll-text {
   }
 }
 
-@keyframes rollWords {
+@keyframes fadeIn {
   to { opacity: 1; }
 }
 
-@keyframes rollWordsOut {
+@keyframes fadeOut {
   to { opacity: 0; }
 }
 
-/* 小さい画面 */
-@media (max-width: 600px) {
-  .title {
-    top: 10vh;
+@keyframes lineIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+@keyframes lineOut {
+  to {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}
+
+/* ───── モバイル ───── */
+
+@media (max-width:600px) {
+
+  .title { top: 10vh; }
 
   .donut {
     width: min(72vw,330px);
@@ -362,13 +408,16 @@ body.night .roll-text {
     width: 120vw;
     height: 48vh;
   }
+
+  .dialogue {
+    bottom: 10vh;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- 昨日の夜は入口の後ろで待っている -->
 <section class="yesterday">
 
   <div class="yesterday-text">
@@ -384,12 +433,18 @@ body.night .roll-text {
     ころ。ころころ。
   </div>
 
+  <div class="dialogue">
+    <p class="line l1">「お前も来たのか」</p>
+    <p class="line white-line l2">「うん」</p>
+    <p class="line l3">「何しに？」</p>
+    <p class="line white-line l4">「知らない」</p>
+  </div>
+
   <div class="night-cover"></div>
 
 </section>
 
 
-<!-- 入口 -->
 <main class="entrance">
 
   <div class="title">白い朝</div>
@@ -412,13 +467,15 @@ const hole = document.getElementById("hole");
 
 hole.addEventListener("click", () => {
 
-  /* まずドーナツの中央を通る */
   document.body.classList.add("entering");
 
-  /* 一度、暗闇を挟む */
   setTimeout(() => {
     document.body.classList.add("night");
   }, 1500);
+
+  setTimeout(() => {
+    document.body.classList.add("after-dialogue");
+  }, 23000);
 
 });
 </script>
