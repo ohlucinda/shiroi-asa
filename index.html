@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>白い朝</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #080a10;
+  color: white;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    serif;
+}
+
+body {
+  transition: background 2.5s ease;
+}
+
+.scene {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.title {
+  position: absolute;
+  top: 8vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: clamp(24px, 4vw, 42px);
+  letter-spacing: .3em;
+  font-weight: 400;
+  opacity: .9;
+}
+
+/* ドーナツ */
+.donut {
+  position: relative;
+  width: min(58vw, 340px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 27%,
+      #e9c38e 0 7%,
+      transparent 8%),
+    radial-gradient(circle at 68% 33%,
+      #c99458 0 5%,
+      transparent 6%),
+    radial-gradient(circle at 42% 67%,
+      #b77b43 0 4%,
+      transparent 5%),
+    radial-gradient(circle at 50% 45%,
+      #e8bb78,
+      #c4874b 58%,
+      #8f562e 100%);
+  box-shadow:
+    0 30px 70px rgba(0,0,0,.55),
+    inset 0 0 35px rgba(255,240,200,.18);
+  transition:
+    transform 2s ease,
+    opacity 2s ease,
+    filter 2s ease;
+}
+
+/* 真ん中は「物」ではなく空白 */
+.hole {
+  position: absolute;
+  width: 31%;
+  aspect-ratio: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  border: 0;
+  background: #080a10;
+  cursor: pointer;
+  box-shadow:
+    inset 0 0 22px rgba(0,0,0,.9),
+    0 0 5px rgba(255,255,255,.06);
+}
+
+.invitation {
+  position: absolute;
+  bottom: 9vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: clamp(17px, 3vw, 23px);
+  letter-spacing: .08em;
+  transition: opacity 1s ease;
+}
+
+/* 抜けた先 */
+.yesterday {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 72% 22%,
+      rgba(214,224,255,.18),
+      transparent 18%),
+    linear-gradient(
+      #050711 0%,
+      #10152b 55%,
+      #181c2e 100%
+    );
+  transition: opacity 2.4s ease;
+}
+
+.moon {
+  position: absolute;
+  right: 12vw;
+  top: 14vh;
+  width: clamp(55px, 9vw, 100px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #eee9d7;
+  box-shadow: 0 0 40px rgba(240,235,210,.25);
+}
+
+/* 白には形を与えない */
+.white-presence {
+  position: absolute;
+  left: -35%;
+  bottom: 0;
+  width: 80%;
+  height: 42%;
+  opacity: 0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255,255,255,.92) 0%,
+      rgba(255,255,255,.55) 32%,
+      rgba(255,255,255,.12) 61%,
+      transparent 74%
+    );
+  filter: blur(18px);
+}
+
+.yesterday-text {
+  position: absolute;
+  left: 8vw;
+  top: 12vh;
+  font-size: clamp(18px, 3vw, 27px);
+  line-height: 2;
+  letter-spacing: .08em;
+  opacity: 0;
+}
+
+.roll-text {
+  position: absolute;
+  left: 9vw;
+  bottom: 18vh;
+  font-size: clamp(20px, 3vw, 28px);
+  letter-spacing: .18em;
+  opacity: 0;
+}
+
+/* クリック後 */
+body.entered .title,
+body.entered .invitation {
+  opacity: 0;
+}
+
+body.entered .donut {
+  transform: scale(5);
+  opacity: 0;
+  filter: blur(8px);
+}
+
+body.entered .yesterday {
+  opacity: 1;
+}
+
+body.entered .yesterday-text {
+  animation: appear 2s 2.1s forwards;
+}
+
+body.entered .white-presence {
+  animation:
+    whiteEnter 5s 4.2s ease-out forwards,
+    breathe 4s 9s ease-in-out infinite alternate;
+}
+
+body.entered .roll-text {
+  animation: appear 1.5s 5.2s forwards;
+}
+
+@keyframes appear {
+  to { opacity: 1; }
+}
+
+@keyframes whiteEnter {
+  0% {
+    left: -45%;
+    opacity: 0;
+  }
+  25% {
+    opacity: .35;
+  }
+  100% {
+    left: 8%;
+    opacity: .9;
+  }
+}
+
+@keyframes breathe {
+  from {
+    transform: translateX(0);
+    opacity: .72;
+  }
+  to {
+    transform: translateX(8vw);
+    opacity: 1;
+  }
+}
+
+.hint {
+  position: absolute;
+  bottom: 3vh;
+  width: 100%;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 11px;
+  letter-spacing: .1em;
+  opacity: .28;
+}
+</style>
+</head>
+
+<body>
+
+<main class="scene">
+  <div class="title">白い朝</div>
+
+  <div class="donut">
+    <button
+      class="hole"
+      id="hole"
+      aria-label="ドーナツの真ん中を通る">
+    </button>
+  </div>
+
+  <div class="invitation">「そこ、通れるよ」</div>
+
+  <div class="hint">真ん中を押す</div>
+</main>
+
+<section class="yesterday">
+  <div class="moon"></div>
+
+  <div class="yesterday-text">
+    その先にあったのは<br>
+    昨日の夜
+  </div>
+
+  <div class="white-presence"></div>
+  <div class="roll-text">ころ。ころころ。</div>
+</section>
+
+<script>
+const hole = document.getElementById("hole");
+
+hole.addEventListener("click", () => {
+  document.body.classList.add("entered");
+});
+</script>
+
+</body>
+</html>
