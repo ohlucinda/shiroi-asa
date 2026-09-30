@@ -47,6 +47,19 @@ body{margin:0;background:#fbfaf5;color:#242426;font-family:"Hiragino Mincho ProN
 @media(max-width:650px){.scene{padding-top:11vh}.red-meteor{offset-path:path("M -40 330 C 70 315 155 325 245 350 C 300 350 345 395 345 450 C 345 505 300 550 245 550 C 190 550 145 505 145 450 C 145 395 190 350 245 350 C 350 350 455 360 570 370")}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.meteor-stage{opacity:1}.red-meteor{animation:none!important;opacity:1;offset-distance:70%}}
 </style>
+
+<style id="home-nav-three-column-fix">
+.hime-part-nav{
+  display:grid !important;
+  grid-template-columns:1fr auto 1fr !important;
+  align-items:center !important;
+}
+.hime-part-nav .prev{justify-self:start;}
+.hime-part-nav .home{justify-self:center;}
+.hime-part-nav .next{justify-self:end;}
+.hime-part-nav .nav-empty{display:block;}
+</style>
+
 </head>
 <body>
 <section class="title"><h1>器</h1></section>
@@ -73,7 +86,7 @@ body{margin:0;background:#fbfaf5;color:#242426;font-family:"Hiragino Mincho ProN
 <p>午前二時。</p><p>赤い流れ星が現れた。</p><p>夜空を走った。</p><p>途中でくるりと曲がった。</p><p>一回、</p><p>大きな円を描いた。</p><p>そして消えた。</p><p>白いものと青いものは、</p><p>器の中から見ていた。</p><p>白いものが、</p><p>残ったドーナツをひとくち食べた。</p><p>青いものも食べた。</p><p>白いものは空を見た。</p><p>「今日、月ないね」</p><p>ドーナツが言った。</p><p>「ないね」</p><p>「お前がもうすぐないね」</p><p>月の声がした。</p><p>ドーナツ。</p><p>「あらま」</p>
 </div></section>
 </main>
-<nav class="hime-part-nav" aria-label="作品内ナビゲーション"><a class="prev" href="./04%20白と青.html">← 白と青</a><a class="next" href="./白い朝_ホーム_02(1).html">ホーム →</a></nav>
+<nav class="hime-part-nav" aria-label="作品内ナビゲーション"><a class="prev" href="./04%20白と青.html">← 白と青</a><a class="home" href="./index.html">ホーム</a><span class="nav-empty"></span></nav>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
  const scene=document.querySelector('.meteor-scene');
