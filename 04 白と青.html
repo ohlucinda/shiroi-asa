@@ -10,9 +10,10 @@ html,body{margin:0;background:#f8f8f5;color:#242426}
 body{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;line-height:1.8;letter-spacing:.06em;overflow-x:hidden}
 .title{height:100vh;display:grid;place-items:center;background:#f8f8f5}
 .title h1{margin:0;font-size:clamp(28px,4vw,46px);font-weight:400;letter-spacing:.34em}
-.scene{position:relative;min-height:100vh;padding:14vh 20px 16vh;overflow:hidden}
+.scene{position:relative;min-height:auto;padding:14vh 20px 14vh;overflow:hidden}
 .prose{position:relative;z-index:10;width:min(650px,86vw);margin:0 auto}
 .prose p{margin:0 0 2.1em;font-size:clamp(17px,2.2vw,24px)}
+.prose p:last-child{margin-bottom:0}
 
 /* Part 4: blue-tinted spaces, with the same soft white diffusion used in Part 2. */
 .scene-1{background:#f8f9fa}
@@ -58,7 +59,7 @@ body{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;line-height:1.8;letter
 .scene-5 .blue{left:55vw;top:32vh;transform:scale(.96)}
 
 @media(max-width:650px){
-  .scene{padding-top:11vh}
+  .scene{padding-top:11vh; padding-bottom:11vh}
   .prose{width:86vw}
   .white{width:92vw;height:68vw;left:24vw}
   .blue{width:88vw;height:62vw;left:32vw}
@@ -262,7 +263,7 @@ body{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;line-height:1.8;letter
   <div class="presence white"></div>
   <div class="presence blue"></div>
   <div class="prose">
-    <p>白いものは歩いていた。</p><p>ぺた。</p><p>ぺた。</p><p>少し速く歩いた。</p><p>ぺた、ぺた、ぺた。</p><p>そのとき、</p><p>ぺた。</p><p>白いものは止まった。</p><p>もうひとつの音も止まった。</p><p>白いものは歩いた。</p><p>ぺた。</p><p>ぺた。</p><p>後ろから、</p><p>ぺた。</p><p>ぺた。</p><p>白いものは振り向いた。</p><p>青いものがいた。</p><p>白いものと同じように、足が二本あった。</p>
+    <p>白いものは歩いていた。</p><p>ぺた。</p><p>ぺた。</p><p>少し速く歩いた。</p><p>ぺた、ぺた、ぺた。</p><p>そのとき。</p><p>ぺた。</p><p>白いものは止まった。</p><p>もうひとつの音も止まった。</p><p>白いものは歩いた。</p><p>ぺた。</p><p>ぺた。</p><p>後ろから、ぺた。</p><p>ぺた。</p><p>白いものは振り向いた。</p><p>青いものがいた。</p><p>白いものと同じように、足が二本あった。</p>
   </div>
 </section>
 <section class="scene scene-2">

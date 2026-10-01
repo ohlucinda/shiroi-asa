@@ -288,6 +288,30 @@ body{
 .hime-part-nav .nav-empty{display:block;}
 </style>
 
+
+<style id="part2-text-spacing-standard">
+/* 第三部で確定した「文字と余白」の基準 */
+.beat{
+  padding-top:14vh !important;
+  padding-bottom:14vh !important;
+}
+.beat .prose{
+  width:min(650px,86vw);
+  margin-left:auto;
+  margin-right:auto;
+}
+.beat .prose p{
+  margin-bottom:2.1em;
+  font-size:clamp(17px,2.2vw,24px);
+}
+.beat .prose p:last-child{
+  margin-bottom:0;
+}
+@media(max-width:650px){
+  .beat{padding-top:11vh !important;}
+}
+</style>
+
 </head>
 <body>
 <section class="title"><h1>月の復讐</h1></section>
@@ -562,9 +586,7 @@ body{
 
 <p>白いものは白かった。</p>
 
-<p>何事もなかったみたいに、</p>
-
-<p>そこにいた。</p>
+<p>何事もなかったみたいに、そこにいた。</p>
 
 <p>月はしばらく口を開けていた。</p>
 

@@ -7,10 +7,10 @@
 <style>*{box-sizing:border-box}
 html{scroll-behavior:smooth;background:#fbfaf5}
 body{margin:0;background:#fbfaf5;color:#242426;font-family:"Hiragino Mincho ProN","Yu Mincho",serif;line-height:1.8;letter-spacing:.06em;overflow-x:hidden}
-.beat{position:relative;min-height:auto;padding:14vh 20px 2vh;overflow:hidden;display:block}
+.beat{position:relative;min-height:auto;padding:14vh 20px 14vh;overflow:hidden;display:block}
 .prose{position:relative;z-index:10;width:min(650px,86vw);margin:0 auto}
 .prose p{margin:0 0 2.1em;font-size:clamp(17px,2.2vw,24px)}
-.prose p:last-child{margin-bottom:1.8em}
+.prose p:last-child{margin-bottom:0}
 .title{height:100vh;min-height:100vh;display:grid;place-items:center;background:#fbfaf5;position:relative;z-index:30;overflow:hidden}
 .title h1{margin:0;font-size:clamp(28px,4vw,46px);font-weight:400;letter-spacing:.34em}
 .end-image-wrap{padding:0 20px 14vh;background:#fbfaf5;display:flex;justify-content:center}
@@ -36,7 +36,7 @@ html, body { background:#fbfaf5; }
 .scene {
   position:relative;
   overflow:hidden;
-  padding:14vh 20px 2vh;
+  padding:14vh 20px 14vh;
   min-height:0;
   transition:none;
 }
@@ -88,6 +88,11 @@ html, body { background:#fbfaf5; }
 }
 </style>
 
+<style id="third-part-text-spacing">
+/* 第三部：scene 間の文字と余白だけを統一 */
+.scene { padding-top:14vh; padding-bottom:14vh; }
+.scene .prose p:last-child { margin-bottom:0; }
+</style>
 
 <style id="final-image-background">
 .scene-5 {
@@ -112,14 +117,6 @@ html, body { background:#fbfaf5; }
 
 <style id="final-space-balance">
 /* 最後の二つの空間だけ、上下の呼吸を調整 */
-.scene-4 {
-  padding-bottom:16vh;
-}
-
-.scene-5 {
-  padding-top:18vh;
-  padding-bottom:16vh;
-}
 </style>
 
 
