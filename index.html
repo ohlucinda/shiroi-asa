@@ -57,6 +57,29 @@ footer{text-align:center;padding-top:40px;font-family:"Hiragino Sans",sans-serif
  .media-item{grid-template-columns:74px 1fr;gap:10px 16px;padding:20px 2px}
  .media-action{grid-column:2}
 }
+
+.essay-link{
+  display:block;
+  text-decoration:none;
+  border-top:1px solid rgba(52,52,52,.42);
+  padding:17px 4px 12px;
+  transition:opacity .2s ease;
+}
+.essay-link:hover{opacity:.58}
+.essay-link small{
+  font-family:system-ui,sans-serif;
+  font-size:12px;
+  letter-spacing:.14em;
+  opacity:.46;
+}
+.essay-link strong{
+  display:block;
+  font-weight:400;
+  font-size:20px;
+  margin-top:8px;
+  letter-spacing:.08em;
+}
+
 </style>
 </head>
 <body>
@@ -83,6 +106,14 @@ footer{text-align:center;padding-top:40px;font-family:"Hiragino Sans",sans-serif
       <a class="part" href="./04%20白と青.html"><small>第四部</small><strong>白と青</strong></a>
       <a class="part" href="./05%20器.html"><small>第五部</small><strong>器</strong></a>
     </nav>
+  </section>
+
+  <section class="section" aria-labelledby="essay-title">
+    <h2 class="section-title" id="essay-title">作者エッセイ</h2>
+    <a class="essay-link" href="朝が来た.html">
+      <small>ESSAY</small>
+      <strong>朝が来た</strong>
+    </a>
   </section>
 
   <section class="section" aria-labelledby="media-title">
