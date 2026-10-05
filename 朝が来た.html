@@ -113,22 +113,23 @@ body{
 
 </style>
 
-<style>
-.prose p:has(.morning-white){
-  color:#f5f1e8 !important;
-}
-.morning-white{
-  color:#f5f1e8 !important;
-}
-</style>
 
 
 <style>
-.prose p:has(.just-wrote){
-  color:#242426 !important;
+/* Fixed text colors by paragraph range. These do not depend on viewport size,
+   browser layout, scroll position, or computed background luminance. */
+.prose p{
+  color:#242426;
 }
-.just-wrote{
-  color:#242426 !important;
+.prose p:nth-child(n+52):nth-child(-n+80){
+  color:#f5f1e8;
+}
+.prose p:nth-child(44){
+  color:#242426;
+}
+.prose p:nth-child(74),
+.prose p:nth-child(75){
+  color:#f5f1e8;
 }
 </style>
 
@@ -180,7 +181,7 @@ body{
     <p>ドーナツの穴を抜ける。</p>
     <p>昨日の夜へ行く。</p>
     <p>理由になっていない理由で、破壊が起きた場所。</p>
-    <p><span class="just-wrote">ただ書いた。</span></p>
+    <p>ただ書いた。</p>
     <p>あとから見たら、そこに今の私まで続いているものがあった。</p>
     <p>朝は、夜がなくなった場所ではない。</p>
     <p>夜を通ってきた場所に来る。</p>
@@ -210,8 +211,8 @@ body{
     <p>そこからぐるっと通ってきて、そして最後に第一部を書き直した。</p>
     <p>だから第一部は、作品では最初に置かれているけれど、私にとっては最後でもある。</p>
     <p>月のおかしな状態を壊して、そこから奪って、月を本来いる場所へ戻す。</p>
-    <p><span class="morning-white">そして朝が来る。</span></p>
-    <p><span class="morning-white">そこで終わり。</span></p>
+    <p>そして朝が来る。</p>
+    <p>そこで終わり。</p>
     <p>第二部の『月の復讐』は、おまけだ。</p>
     <p>でも、必要なおまけだった。</p>
     <p>大事なおまけだった。</p>
@@ -252,83 +253,6 @@ body{
   </nav>
 </main>
 
-<script>
-(function(){
-  const page=document.querySelector('.page');
-  const title=document.querySelector('.title');
-  const paras=[...document.querySelectorAll('.prose p')];
-  if(!page || !paras.length) return;
-
-  const stops=[
-    [0.00,'#eee5d4'],
-    [0.10,'#ebe0d2'],
-    [0.20,'#ead8d1'],
-    [0.30,'#efc6c7'],
-    [0.40,'#e78691'],
-    [0.49,'#d85e6e'],
-    [0.57,'#c94b5d'],
-    [0.64,'#d25768'],
-    [0.72,'#e17480'],
-    [0.81,'#ed9da1'],
-    [0.89,'#f1c1b8'],
-    [0.96,'#f1dfd2'],
-    [1.00,'#f5f1e7']
-  ];
-
-  function lum(hex){
-    const n=hex.slice(1);
-    const r=parseInt(n.slice(0,2),16)/255;
-    const g=parseInt(n.slice(2,4),16)/255;
-    const b=parseInt(n.slice(4,6),16)/255;
-    const f=v=>v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);
-    return .2126*f(r)+.7152*f(g)+.0722*f(b);
-  }
-
-  function colorAt(t){
-    t=Math.max(0,Math.min(1,t));
-    for(let i=1;i<stops.length;i++){
-      if(t<=stops[i][0]){
-        const [p1,c1]=stops[i-1], [p2,c2]=stops[i];
-        const q=(t-p1)/(p2-p1);
-        const a=c1.slice(1),b=c2.slice(1);
-        const vals=[0,2,4].map(k=>Math.round(
-          parseInt(a.slice(k,k+2),16)+
-          (parseInt(b.slice(k,k+2),16)-parseInt(a.slice(k,k+2),16))*q
-        ));
-        return '#'+vals.map(v=>v.toString(16).padStart(2,'0')).join('');
-      }
-    }
-    return stops.at(-1)[1];
-  }
-
-  function update(){
-    const top=page.getBoundingClientRect().top+scrollY;
-    const h=page.offsetHeight;
-
-    paras.forEach(p=>{
-      const r=p.getBoundingClientRect();
-      const t=(r.top+r.height/2+scrollY-top)/h;
-      p.style.color=lum(colorAt(t))>.28 ? '#242426' : '#f5f1e8';
-    });
-
-    if(title){
-      const r=title.getBoundingClientRect();
-      const t=(r.top+r.height/2+scrollY-top)/h;
-      title.style.color=lum(colorAt(t))>.28 ? '#242426' : '#f5f1e8';
-    }
-  }
-
-  let ticking=false;
-  function scroll(){
-    if(ticking)return;
-    ticking=true;
-    requestAnimationFrame(()=>{update();ticking=false;});
-  }
-  addEventListener('scroll',scroll,{passive:true});
-  addEventListener('resize',update);
-  update();
-})();
-</script>
 
 </body>
 </html>
