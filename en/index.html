@@ -107,6 +107,20 @@ footer{text-align:center;padding-top:40px;font-family:"IBM Plex Sans", Arial, He
 .section-title { margin-bottom: 12px; }
 .part, .essay-link { padding-top: 6px; }
 .media-item:first-child { padding-top: 6px; }
+
+/* Essay and video links respond to their text, not the empty row area. */
+.essay-link, .media-button { pointer-events: none; }
+.essay-link small, .essay-link strong,
+.media-button .media-kind, .media-button .media-name {
+  pointer-events: auto;
+  cursor: pointer;
+}
+.essay-link strong { width: fit-content; max-width: 100%; }
+.media-button .media-kind, .media-button .media-name {
+  justify-self: start;
+  width: fit-content;
+  max-width: 100%;
+}
 </style>
 <style id="english-title-wrap">
 .title h1,.part-title h1{max-width:86vw;text-align:center;overflow-wrap:break-word}
