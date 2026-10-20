@@ -18,34 +18,35 @@
 <meta name="twitter:title" content="White Morning | Hime">  
 <meta name="twitter:description" content="Playing became a story. The story became getting even. This is White Morning by Hime.">  
 <meta name="twitter:image" content="https://shiroiasa.ohlucinda.com/images/shiroi-asa-og.jpg">  
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap">
 <style>
+/* 公開版ホームを基に、フォントとフッターの配置だけを調整した試作 */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 html,body{margin:0;background:#fbfaf8;color:#343434}
-body{font-family:"IBM Plex Sans", Arial, Helvetica, sans-serif;letter-spacing:.06em}
+body{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;letter-spacing:0}
+[lang="en"],.latin{font-family:'adobe-caslon-pro',Georgia,serif}
 a{color:inherit}
-.page{max-width:1180px;margin:0 auto;padding:38px 28px 110px}
+.page{max-width:1180px;margin:0 auto;padding:38px 28px 46px}
 header{display:flex;justify-content:center;align-items:baseline;gap:40px;padding:24px 0 34px}
-h1{font-size:clamp(32px,5vw,60px);font-weight:400;letter-spacing:.18em;margin:0}
-.author{font-size:32px;font-weight:400;letter-spacing:.18em;margin:0}
+h1{font-size:clamp(32px,5vw,60px);font-weight:400;letter-spacing:.02em;margin:0}
+.author{font-size:32px;font-weight:400;letter-spacing:.02em;margin:0}
 .hero{margin:0 auto}
 .hero img{display:block;width:100%;height:auto}
 .read-start{text-align:center;padding:58px 0 100px}
-.read-start a{display:inline-block;text-decoration:none;font-size:clamp(18px,2vw,23px);letter-spacing:.18em;padding:10px 4px;border-bottom:1px solid rgba(52,52,52,.55)}
+.read-start a{display:inline-block;text-decoration:none;font-size:clamp(18px,2vw,23px);letter-spacing:0;padding:10px 4px;border-bottom:1px solid rgba(52,52,52,.55)}
 .section{max-width:980px;margin:0 auto 104px}
-.section-title{font-size:clamp(19px,2.2vw,27px);font-weight:400;letter-spacing:.14em;margin:0 0 36px}
+.section-title{font-size:clamp(19px,2.2vw,27px);font-weight:400;letter-spacing:.02em;margin:0 0 36px}
 .contents{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
 .part{display:block;text-decoration:none;border-top:1px solid rgba(52,52,52,.42);padding:17px 4px 12px;transition:opacity .2s ease}
 .part:hover{opacity:.58}
-.part small{font-family:"IBM Plex Sans", Arial, Helvetica, sans-serif;font-size:12px;letter-spacing:.14em;opacity:.46}
-.part strong{display:block;font-weight:400;font-size:20px;margin-top:8px;letter-spacing:.08em}
+.part small{font-family:inherit;font-size:12px;letter-spacing:0;opacity:.46}
+.part strong{display:block;font-weight:400;font-size:20px;margin-top:8px;letter-spacing:0}
 .media-list{border-top:1px solid rgba(52,52,52,.28)}
 .media-item{display:grid;grid-template-columns:120px 1fr;align-items:center;gap:24px;padding:24px 2px;border-bottom:1px solid rgba(52,52,52,.18)}
-.media-kind{font-family:"IBM Plex Sans", Arial, Helvetica, sans-serif;font-size:10px;letter-spacing:.16em;opacity:.46}
-.media-name{font-size:17px;letter-spacing:.09em}
-.media-action{font-family:"IBM Plex Sans", Arial, Helvetica, sans-serif;font-size:10px;letter-spacing:.15em;opacity:.5}
-.media-note{font-family:"IBM Plex Sans", Arial, Helvetica, sans-serif;font-size:11px;line-height:1.8;letter-spacing:.04em;opacity:.42;margin:18px 2px 0}
+.media-kind{font-family:'adobe-caslon-pro',Georgia,serif;font-size:12px;letter-spacing:0;opacity:.5}
+.media-name{font-size:17px;letter-spacing:0}
+.media-action{font-family:'adobe-caslon-pro',Georgia,serif;font-size:11px;letter-spacing:0;opacity:.5}
+.media-note{font-family:inherit;font-size:11px;line-height:1.8;letter-spacing:0;opacity:.42;margin:18px 2px 0}
 .media-button{border:0;background:none;color:inherit;font:inherit;text-align:left;width:100%;cursor:pointer;transition:color .2s ease}
 .media-button:hover,.media-button:focus-visible{color:#888}
 .media-button .media-action{justify-self:end}
@@ -53,17 +54,10 @@ h1{font-size:clamp(32px,5vw,60px);font-weight:400;letter-spacing:.18em;margin:0}
 .video-modal.is-open{display:flex}
 .video-modal-inner{position:relative;width:min(100%,1000px)}
 .video-modal video{display:block;width:100%;max-height:82vh;background:#000}
-.video-close{position:absolute;right:0;top:-44px;border:0;background:none;color:#fff;font:300 34px/1 "IBM Plex Sans",Arial,Helvetica,sans-serif;cursor:pointer;padding:4px 8px}
+.video-close{position:absolute;right:0;top:-44px;border:0;background:none;color:#fff;font:300 34px/1 system-ui,sans-serif;cursor:pointer;padding:4px 8px}
 body.modal-open{overflow:hidden}
-footer{text-align:center;padding-top:40px;font-family:"IBM Plex Sans", Arial, Helvetica, sans-serif;font-size:14px;letter-spacing:.06em;opacity:.7}
-.footer-part,
-.footer-row{
-  font-family:"IBM Plex Sans", Arial, Helvetica, sans-serif;
-} 
-.footer-part{margin-bottom:20px}
-.footer-row{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap}
 @media(max-width:700px){
- .page{padding:22px 16px 72px}
+ .page{padding:22px 16px 40px}
  header{padding:18px 0 26px}
  .read-start{padding:42px 0 76px}
  .section{margin-bottom:78px}
@@ -71,60 +65,199 @@ footer{text-align:center;padding-top:40px;font-family:"IBM Plex Sans", Arial, He
  .media-item{grid-template-columns:74px 1fr;gap:10px 16px;padding:20px 2px}
  .media-action{grid-column:2}
 }
-
-.essay-link{
-  display:block;
-  text-decoration:none;
-  border-top:1px solid rgba(52,52,52,.42);
-  padding:17px 4px 12px;
-  transition:opacity .2s ease;
-}
+.essay-link{display:block;text-decoration:none;border-top:1px solid rgba(52,52,52,.42);padding:17px 4px 12px;transition:opacity .2s ease}
 .essay-link:hover{opacity:.58}
-.essay-link small{
-  font-family:"IBM Plex Sans", Arial, Helvetica, sans-serif;
-  font-size:12px;
-  letter-spacing:.14em;
-  opacity:.46;
-}
-.essay-link strong{
-  display:block;
-  font-weight:400;
-  font-size:20px;
-  margin-top:8px;
-  letter-spacing:.08em;
+.essay-link small{font-family:'adobe-caslon-pro',Georgia,serif;font-size:13px;letter-spacing:0;opacity:.5}
+.essay-link strong{display:block;font-weight:400;font-size:20px;margin-top:8px;letter-spacing:0}
+/* 現行版で承認済みの罫線無しレイアウトを維持 */
+.read-start a{border-bottom:0}
+.part,.essay-link,.media-list{border-top:0}
+.media-item{border-bottom:0}
+@media(max-width:700px){.author{font-size:18px}}
+.section-title{margin-bottom:12px}
+.part,.essay-link{padding-top:6px}
+.media-item:first-child{padding-top:6px}
+/* 現行版と同じクリック領域の設定 */
+.essay-link,.media-button{pointer-events:none}
+.essay-link small,.essay-link strong,.media-button .media-kind,.media-button .media-name{pointer-events:auto;cursor:pointer}
+.essay-link strong{width:fit-content;max-width:100%}
+.media-button .media-kind,.media-button .media-name{justify-self:start;width:fit-content;max-width:100%}
+/* 今回の試作：作品欄の終わりとフッターの余白を圧縮 */
+.section[aria-labelledby="media-title"]{margin-bottom:0}
+.section[aria-labelledby="media-title"] .media-item:last-child{padding-bottom:9px}
+footer{max-width:980px;margin:0 auto;text-align:left;padding:24px 2px 0;font-family:'adobe-caslon-pro',Georgia,serif;font-size:16px;letter-spacing:0;color:#63615f}
+.footer-part{margin:0 0 12px;line-height:1.4;font-size:17px}
+.footer-part em{font-style:italic}
+.footer-part .jp{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-style:normal;letter-spacing:0}
+.footer-row{display:flex;justify-content:flex-start;align-items:center;gap:clamp(18px,3vw,33px);flex-wrap:wrap}
+.footer-row a{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;transition:color .2s ease;white-space:nowrap}
+.footer-row a:hover,.footer-row a:focus-visible{color:#111}
+.copyright{margin-top:12px;font-size:14px;letter-spacing:0;color:#787674}
+@media(max-width:700px){
+ .section[aria-labelledby="media-title"]{margin-bottom:0}
+ footer{padding-top:18px;font-size:15px}
+ .footer-part{font-size:16px;margin-bottom:10px}
+ .footer-row{gap:10px 20px}
+ .copyright{font-size:13px;margin-top:12px}
 }
 
+/* 第二試作：空白は量ではなく役割に応じて配分する */
+@media(min-width:701px){
+ .section{margin-bottom:88px}
+}
+.section[aria-labelledby="media-title"]{
+ margin-bottom:82px;
+}
+.section[aria-labelledby="media-title"] .media-item:last-child{padding-bottom:24px}
+footer{
+ max-width:980px;
+ margin:0 auto;
+ padding:0 2px;
+ text-align:center;
+ opacity:.82;
+ font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+ font-size:14px;
+}
+.footer-part{margin:0 0 16px; font-size:15px; line-height:1.6; letter-spacing:0}
+.footer-part .jp{font-style:normal}
+.footer-part [lang="en"]{font-family:'adobe-caslon-pro',Georgia,serif;font-style:italic}
+.footer-row{
+ display:flex;
+ justify-content:center;
+ align-items:baseline;
+ flex-wrap:wrap;
+ gap:10px clamp(16px,2.2vw,32px);
+ font-family:'adobe-caslon-pro',Georgia,serif;
+ font-size:17px;
+ letter-spacing:0;
+}
+.copyright{
+ margin-top:22px;
+ font-family:'adobe-caslon-pro',Georgia,serif;
+ font-size:13px;
+ letter-spacing:0;
+ opacity:.72;
+}
+@media(max-width:700px){
+ .section[aria-labelledby="media-title"]{margin-bottom:72px}
+ footer{padding-top:0;font-size:14px}
+ .footer-part{margin-bottom:13px;font-size:14px}
+ .footer-row{display:grid;grid-template-columns:max-content max-content;justify-content:center;gap:12px 26px; font-size:16px}
+ .media-item{grid-template-columns:98px 1fr}
+ .media-kind{font-size:11px;letter-spacing:0;white-space:nowrap}
+ .copyright{font-size:12px;margin-top:20px}
+}
 
-/* Minimal line-free home preview approved for publication */
-.read-start a { border-bottom: 0; }
-.part, .essay-link, .media-list { border-top: 0; }
-.media-item { border-bottom: 0; }
+/* 第5試作：フッターの文字サイズは14px未満にしない */
+footer { text-align:center; padding:0 2px; color:#5c5a59; opacity:1; font-size:15px; }
+.footer-part { margin-bottom:16px; font-size:15px; line-height:1.45; }
+.footer-row {
+ display:flex; justify-content:center; align-items:baseline;
+ flex-wrap:wrap; gap:0 12px; font-size:15px;
+ font-family:'adobe-caslon-pro',Georgia,serif;
+}
+.footer-separator { color:#8b8987; font-size:15px; font-weight:300; }
+.footer-row a { text-underline-offset:4px; text-decoration-thickness:1px; }
+.copyright { margin-top:18px; font-size:14px; opacity:.80; }
+@media(max-width:700px){
+ .footer-part { font-size:15px; margin-bottom:14px; }
+ .footer-row { display:grid; grid-template-columns:max-content max-content; justify-content:center; gap:10px 22px; font-size:15px; }
+ .footer-separator { display:none; }
+ .copyright { margin-top:17px; font-size:14px; }
+}
+@media(max-width:350px){
+ .footer-row { gap:10px 14px; font-size:15px; }
+}
+
+/* 第7試作：補助文字の可読性とセクションごとの縦余白だけを再調整 */
+/* 第一部〜第五部 / ESSAY / THEME / LYRIC VIDEO を読みやすく。 */
+.part small,
+.essay-link small,
+.media-kind {
+  opacity: .76;
+  font-size: 14px;  /* 以前の指定どおり、12pxを使わない */
+}
+/* リンクと見出しとの距離に差をつける：目次とエッセイは近く、音楽には少し余白 */
+.section[aria-labelledby="contents-title"] { margin-bottom: 56px; }
+.section[aria-labelledby="essay-title"] { margin-bottom: 78px; }
+/* 動画一覧とフッターはまとまりを保ちながらも、区切りを感じる距離に */
+.section[aria-labelledby="media-title"] { margin-bottom: 67px; }
+/* 言語切替の小さすぎた表示も14px以上にする */
+
 @media (max-width: 700px) {
-  .author { font-size: 18px; }
+  .section[aria-labelledby="contents-title"] { margin-bottom: 55px; }
+  .section[aria-labelledby="essay-title"] { margin-bottom: 69px; }
+  .section[aria-labelledby="media-title"] { margin-bottom: 61px; }
+  .media-kind { font-size: 14px; }
 }
 
-/* Bring the first item closer to each section heading after removing dividers */
-.section-title { margin-bottom: 12px; }
-.part, .essay-link { padding-top: 6px; }
-.media-item:first-child { padding-top: 6px; }
-
-/* Essay and video links respond to their text, not the empty row area. */
-.essay-link, .media-button { pointer-events: none; }
-.essay-link small, .essay-link strong,
-.media-button .media-kind, .media-button .media-name {
-  pointer-events: auto;
-  cursor: pointer;
+/* 第9試作：5列を広げすぎず、画像の中心と一致する範囲にまとめる。
+   目次セクションの見出しと、その他のデザインは第7案のまま。 */
+@media (min-width:701px) {
+  .section[aria-labelledby="contents-title"] {
+    max-width: 980px;
+    width: auto;
+  }
+  .section[aria-labelledby="contents-title"] .contents {
+    max-width: 900px;
+    margin-inline: auto;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .section[aria-labelledby="contents-title"] .part:nth-child(1) { text-align:left; }
+  .section[aria-labelledby="contents-title"] .part:nth-child(2),
+  .section[aria-labelledby="contents-title"] .part:nth-child(3),
+  .section[aria-labelledby="contents-title"] .part:nth-child(4) { text-align:center; }
+  .section[aria-labelledby="contents-title"] .part:nth-child(5) { text-align:right; }
 }
-.essay-link strong { width: fit-content; max-width: 100%; }
-.media-button .media-kind, .media-button .media-name {
-  justify-self: start;
-  width: fit-content;
-  max-width: 100%;
+
+/* 第11案：作品の絵の青を受け取る、静かなブルーのフッター。ほかの要素は第10案のまま。 */
+.page { padding-bottom: 0; }
+footer {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 33px 20px 30px;
+  background: #4b647a; /* 淡い青とグレーが混じった、落ち着いた少し深めの青 */
+  color: #f9f7f2;
+  opacity: 1;
+  text-align: center;
+}
+footer .footer-part { margin-bottom: 15px; color: #f7f5f0; }
+footer .footer-row { color: #faf9f5; }
+footer .footer-separator { color: rgba(250,249,245,.58); }
+footer .footer-row a { color: inherit; }
+footer .footer-row a:hover,
+footer .footer-row a:focus-visible { color: #fff; opacity: .76; }
+footer .copyright { margin-top: 17px; color: #e2e7e9; opacity: 1; }
+@media (max-width: 700px) {
+  footer { padding: 30px 16px 28px; }
+  footer .footer-part { margin-bottom: 14px; }
+  footer .copyright { margin-top: 18px; }
 }
 
-/* Footer link hover feedback */
-footer a{transition:color .2s ease}
-footer a:hover,footer a:focus-visible{color:#888}
+/* 第12案：音楽ラベルと作品名の間隔だけを少し詰める。その他のレイアウトは第11案のまま。 */
+.media-item { grid-template-columns: 108px minmax(0, 1fr); column-gap: 12px; }
+.media-kind { white-space: nowrap; }
+@media (max-width: 700px) {
+  .media-item { grid-template-columns: 100px minmax(0, 1fr); column-gap: 12px; }
+}
+
+/* 第14案：修正するのは音楽の2行の上下間隔と、2か所のセクション間余白のみ。
+   THEME/LYRIC VIDEOと曲名は同じ列位置を保つ（第12案のグリッド配置）。 */
+.media-item { padding-top:10px; padding-bottom:10px; }
+.media-item:first-child { padding-top:6px; }
+/* 「目次の最終項目→作者エッセイ見出し」と
+   「朝が来た→音楽見出し」の見た目の余白を同じにする。 */
+@media (min-width:701px) {
+  .section[aria-labelledby="essay-title"] { margin-bottom:56px; }
+}
+@media (max-width:700px) {
+  .section[aria-labelledby="essay-title"] { margin-bottom:55px; }
+}
+
+/* English home: keep the approved Japanese layout, with Adobe Caslon Pro for English. */
+html[lang="en"] body{font-family:'adobe-caslon-pro',Georgia,serif;letter-spacing:0}
+.media-name [lang="ja"]{font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
 </style>
 <style id="english-title-wrap">
 .title h1,.part-title h1{max-width:86vw;text-align:center;overflow-wrap:break-word}
@@ -133,9 +266,11 @@ header h1{min-width:0;max-width:100%;overflow-wrap:break-word}
 .hime-part-nav a{min-width:0;overflow-wrap:break-word}
 </style>
 <style id="language-switch-style">
-.language-switch{position:fixed;top:16px;right:20px;z-index:1000;font-size:12px;font-weight:400;line-height:1.4;letter-spacing:.08em;color:#fff;mix-blend-mode:difference;opacity:.65;text-decoration:none;border:0;padding:0;background:none}
+.language-switch{position:fixed;top:16px;right:20px;z-index:1000;font-size:14px;font-weight:400;line-height:1.4;letter-spacing:.08em;color:#fff;mix-blend-mode:difference;opacity:.65;text-decoration:none;border:0;padding:0;background:none}
 .language-switch:hover,.language-switch:focus-visible{opacity:1}
 </style>
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/qsa5fag.css">
 </head>
 <body>
 <a class="language-switch" href="/" lang="ja" hreflang="ja" aria-label="日本語">日本語</a>
@@ -177,46 +312,32 @@ header h1{min-width:0;max-width:100%;overflow-wrap:break-word}
     <div class="media-list">
       <button class="media-item media-button" type="button" data-video="../movies/shiroi-asa.mp4" aria-label="PLAY 白い朝">
         <span class="media-kind">THEME</span>
-        <span class="media-name">白い朝 / White Morning</span>
+        <span class="media-name"><span lang="ja">白い朝</span> / White Morning</span>
       </button>
       <button class="media-item media-button" type="button" data-video="../movies/ashiato-o-azukete.mp4" aria-label="PLAY 足跡を預けて">
         <span class="media-kind">LYRIC VIDEO</span>
-        <span class="media-name">足跡を預けて / Let the white hills keep your footsteps</span>
+        <span class="media-name"><span lang="ja">足跡を預けて</span> / Let the white hills keep your footsteps</span>
       </button>
-      <button class="media-item media-button" type="button" data-video="../movies/ai-tte-arukunda.mp4" aria-label="PLAY 愛って歩くんだ">
-        <span class="media-kind">LYRIC VIDEO</span>
-        <span class="media-name">愛って歩くんだ / Love Walks</span>
-      </button>
-    </div>
+      </div>
    
   </section>
 
-  <footer>
-
-  <div class="footer-part">
-    <em>Hime is part of OHLUCINDA</em>
-  </div>
-
-  <div class="footer-row">
-    <div class="touch">
-      <a href="mailto:jemmusicja@duck.com">GET IN TOUCH</a>
-    </div>
-
-    <div class="links">
-      <a href="https://ohlucinda.com" target="_blank">OHLUCINDA</a> ｜ 
-      <a href="https://lyrics.ohlucinda.com" target="_blank">Lyrics</a> ｜ 
-      <a href="https://gem.ohlucinda.com" target="_blank">gem</a> ｜ 
-      <a href="./index.html">White Morning</a>
-    </div>
-
-    <div class="copyright">
-      © 2024 All rights reserved
-    </div>
-  </div>
-
-</footer>
+  
    
 </main>
+<footer aria-label="Related sites and contact">
+  <div class="footer-part"><em><span lang="en">Hime is part of OHLUCINDA</span></em></div>
+  <nav class="footer-row" aria-label="Related links">
+    <a href="https://ohlucinda.com" target="_blank" rel="noopener noreferrer" lang="en">OHLUCINDA</a>
+    <span class="footer-separator" aria-hidden="true">|</span>
+    <a href="https://jem.ohlucinda.com" target="_blank" rel="noopener noreferrer" lang="en">Je'm</a>
+    <span class="footer-separator" aria-hidden="true">|</span>
+    <a href="https://lyrics.ohlucinda.com" target="_blank" rel="noopener noreferrer" lang="en">Lyrics</a>
+    <span class="footer-separator" aria-hidden="true">|</span>
+    <a href="mailto:jemmusicja@duck.com" lang="en">GET IN TOUCH</a>
+  </nav>
+  <div class="copyright" lang="en">© 2024 All rights reserved</div>
+</footer>
 
 <div class="video-modal" id="video-modal" aria-hidden="true">
   <div class="video-modal-inner" role="dialog" aria-modal="true" aria-label="PLAY">
