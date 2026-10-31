@@ -200,15 +200,11 @@ footer { text-align:center; padding:0 2px; color:#5c5a59; opacity:1; font-size:1
     width: auto;
   }
   .section[aria-labelledby="contents-title"] .contents {
-    max-width: 900px;
-    margin-inline: auto;
+    max-width: 980px;
+    margin-inline: 0;
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
-  .section[aria-labelledby="contents-title"] .part:nth-child(1) { text-align:left; }
-  .section[aria-labelledby="contents-title"] .part:nth-child(2),
-  .section[aria-labelledby="contents-title"] .part:nth-child(3),
-  .section[aria-labelledby="contents-title"] .part:nth-child(4) { text-align:center; }
-  .section[aria-labelledby="contents-title"] .part:nth-child(5) { text-align:right; }
+  .section[aria-labelledby="contents-title"] .part { text-align: left; }
 }
 
 /* 第11案：作品の絵の青を受け取る、静かなブルーのフッター。ほかの要素は第10案のまま。 */
