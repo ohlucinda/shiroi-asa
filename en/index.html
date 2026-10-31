@@ -269,6 +269,8 @@ footer .copyright { margin-top: 17px; color: #e2e7e9; opacity: 1; }
 /* English home: keep the approved Japanese layout, with Adobe Caslon Pro for English. */
 html[lang="en"] body{font-family:'adobe-caslon-pro',Georgia,serif;letter-spacing:0}
 .media-name [lang="ja"]{font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
+/* Trial only: chapter titles without part labels; all other design retained. */
+.section[aria-labelledby="contents-title"] .part strong { margin-top: 0; }
 </style>
 <style id="english-title-wrap">
 .title h1,.part-title h1{max-width:86vw;text-align:center;overflow-wrap:break-word}
@@ -302,11 +304,11 @@ header h1{min-width:0;max-width:100%;overflow-wrap:break-word}
   <section class="section" aria-labelledby="contents-title">
     <h2 class="section-title" id="contents-title">Contents</h2>
     <nav class="contents" aria-label="Contents">
-      <a class="part" href="./01-white-morning.html"><small>Part One</small><strong>White Morning</strong></a>
-      <a class="part" href="./02-the-moons-revenge.html"><small>Part Two</small><strong>The Moon’s Revenge</strong></a>
-      <a class="part" href="./03-here.html"><small>Part Three</small><strong>Here</strong></a>
-      <a class="part" href="./04-white-and-blue.html"><small>Part Four</small><strong>White and Blue</strong></a>
-      <a class="part" href="./05-the-vessel.html"><small>Part Five</small><strong>The Vessel</strong></a>
+      <a class="part" href="./01-white-morning.html"><strong>White Morning</strong></a>
+      <a class="part" href="./02-the-moons-revenge.html"><strong>The Moon’s Revenge</strong></a>
+      <a class="part" href="./03-here.html"><strong>Here</strong></a>
+      <a class="part" href="./04-white-and-blue.html"><strong>White and Blue</strong></a>
+      <a class="part" href="./05-the-vessel.html"><strong>The Vessel</strong></a>
     </nav>
   </section>
 
