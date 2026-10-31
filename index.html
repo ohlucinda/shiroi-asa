@@ -210,6 +210,12 @@ footer { text-align:center; padding:0 2px; color:#5c5a59; opacity:1; font-size:1
     padding-left: 0;
     padding-right: 0;
   }
+  /* Optical alignment: chapter numerals have a slightly smaller glyph
+     left bearing than their larger titles. Keep the fifth unchanged. */
+  .section[aria-labelledby="contents-title"] .part:nth-child(-n+4) small {
+    display: block;
+    padding-left: 3px;
+  }
 }
 
 /* 第11案：作品の絵の青を受け取る、静かなブルーのフッター。ほかの要素は第10案のまま。 */
