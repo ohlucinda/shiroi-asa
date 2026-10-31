@@ -269,6 +269,8 @@ footer .copyright { margin-top: 17px; color: #e2e7e9; opacity: 1; }
 /* English home: keep the approved Japanese layout, with Adobe Caslon Pro for English. */
 html[lang="en"] body{font-family:'adobe-caslon-pro',Georgia,serif;letter-spacing:0}
 .media-name [lang="ja"]{font-family:"Hiragino Mincho ProN","Yu Mincho",serif}
+/* 目次：章番号を表示せず、五つの題名のみ配置 */
+.section[aria-labelledby="contents-title"] .part strong { margin-top:0; }
 </style>
 <style id="english-title-wrap">
 .title h1,.part-title h1{max-width:86vw;text-align:center;overflow-wrap:break-word}
@@ -302,11 +304,11 @@ header h1{min-width:0;max-width:100%;overflow-wrap:break-word}
   <section class="section" aria-labelledby="contents-title">
     <h2 class="section-title" id="contents-title">Contents</h2>
     <nav class="contents" aria-label="Contents">
-      <a class="part" href="./01-white-morning.html"><small>Part One</small><strong>White Morning</strong></a>
-      <a class="part" href="./02-the-moons-revenge.html"><small>Part Two</small><strong>The Moon’s Revenge</strong></a>
-      <a class="part" href="./03-here.html"><small>Part Three</small><strong>Here</strong></a>
-      <a class="part" href="./04-white-and-blue.html"><small>Part Four</small><strong>White and Blue</strong></a>
-      <a class="part" href="./05-the-vessel.html"><small>Part Five</small><strong>The Vessel</strong></a>
+      <a class="part" href="./01-white-morning.html"><strong>White Morning</strong></a>
+      <a class="part" href="./02-the-moons-revenge.html"><strong>The Moon’s Revenge</strong></a>
+      <a class="part" href="./03-here.html"><strong>Here</strong></a>
+      <a class="part" href="./04-white-and-blue.html"><strong>White and Blue</strong></a>
+      <a class="part" href="./05-the-vessel.html"><strong>The Vessel</strong></a>
     </nav>
   </section>
 
@@ -385,6 +387,26 @@ header h1{min-width:0;max-width:100%;overflow-wrap:break-word}
 })();
 </script>
 
+<script>(function(){
+const nav=document.querySelector('.section[aria-labelledby="contents-title"] .contents');
+if(!nav)return;
+const links=[...nav.querySelectorAll('.part')];
+if(links.length!==5)return;
+function arrange(){
+ if(window.innerWidth<=700){nav.style.removeProperty('display');nav.style.removeProperty('grid-template-columns');nav.style.removeProperty('justify-content');nav.style.removeProperty('column-gap');nav.style.removeProperty('width');links.forEach(a=>a.style.removeProperty('transform'));return;}
+ nav.style.display='flex';nav.style.justifyContent='space-between';nav.style.columnGap='0';nav.style.width='100%';
+ links.forEach(a=>{a.style.transform='none';a.style.flex='0 0 auto';});
+ const first=links[0].querySelector('strong'),last=links[4].querySelector('strong');
+ const left=first.getBoundingClientRect().left;
+ const right=last.getBoundingClientRect().right;
+ const target=window.innerWidth-left;
+ const delta=right-target;
+ // Match the outer margins first, then distribute remaining space equally.
+ nav.style.width=(nav.getBoundingClientRect().width-delta)+'px';
+}
+arrange();window.addEventListener('resize',arrange);
+if(document.fonts)document.fonts.ready.then(arrange);
+})();</script>
 </body>
 </html>
 
