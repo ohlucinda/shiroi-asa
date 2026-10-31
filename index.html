@@ -202,9 +202,14 @@ footer { text-align:center; padding:0 2px; color:#5c5a59; opacity:1; font-size:1
   .section[aria-labelledby="contents-title"] .contents {
     max-width: 980px;
     margin-inline: 0;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(5, max-content);
+    justify-content: space-between;
   }
-  .section[aria-labelledby="contents-title"] .part { text-align: left; }
+  .section[aria-labelledby="contents-title"] .part {
+    text-align: left;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 /* 第11案：作品の絵の青を受け取る、静かなブルーのフッター。ほかの要素は第10案のまま。 */
