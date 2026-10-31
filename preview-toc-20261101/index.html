@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>白い朝 — 目次試作</title></head><body>
+<p id="load-message" style="padding:2rem;font-family:serif">読み込み中… / Loading…</p>
+<script>
+(async function(){
+ try{
+  const response=await fetch("/",{cache:"no-store"});
+  if(!response.ok)throw Error("HTTP "+response.status);
+  let html=await response.text();
+  html=html.replace(/(<a class="part"[^>]*>)<small>[^<]+<\/small>(<strong>[^<]+<\/strong><\/a>)/g, "$1$2");
+  html=html.replace("<head>","<head><base href=\"https://shiroiasa.ohlucinda.com/\">");
+  html=html.replace("</style>","/* Preview only: single-line chapter titles. */ .section[aria-labelledby=\"contents-title\"] .part strong {margin-top:0;} </style>");
+  html=html.replace(/href="\/en\/" lang="en" hreflang="en"/,'href="/preview-toc-20261101/en/" lang="en" hreflang="en"');
+  html=html.replace(/href="\/" lang="ja" hreflang="ja"/,'href="/preview-toc-20261101/" lang="ja" hreflang="ja"');
+  document.open();document.write(html);document.close();
+ }catch(e){document.getElementById("load-message").textContent="試作の読み込みに失敗しました: "+e.message;}
+})();
+</script></body></html>
