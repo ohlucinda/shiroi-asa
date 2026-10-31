@@ -265,6 +265,8 @@ footer .copyright { margin-top: 17px; color: #e2e7e9; opacity: 1; }
 @media (max-width:700px) {
   .section[aria-labelledby="essay-title"] { margin-bottom:55px; }
 }
+/* 目次：章番号を表示せず、五つの題名のみ配置 */
+.section[aria-labelledby="contents-title"] .part strong { margin-top:0; }
 </style>
 <style id="language-switch-style">
 .language-switch{position:fixed;top:16px;right:20px;z-index:1000;font-size:12px;font-weight:400;line-height:1.4;letter-spacing:0;color:#fff;mix-blend-mode:difference;opacity:.65;text-decoration:none;border:0;padding:0;background:none}
@@ -286,11 +288,11 @@ footer .copyright { margin-top: 17px; color: #e2e7e9; opacity: 1; }
 <section class="section" aria-labelledby="contents-title">
 <h2 class="section-title" id="contents-title">目次</h2>
 <nav class="contents" aria-label="目次">
-  <a class="part" href="./01%20白い朝.html"><small>第一部</small><strong>白い朝</strong></a>
-  <a class="part" href="./02%20月の復讐.html"><small>第二部</small><strong>月の復讐</strong></a>
-  <a class="part" href="./03%20ここ.html"><small>第三部</small><strong>ここ</strong></a>
-  <a class="part" href="./04%20白と青.html"><small>第四部</small><strong>白と青</strong></a>
-  <a class="part" href="./05%20器.html"><small>第五部</small><strong>器</strong></a>
+  <a class="part" href="./01%20白い朝.html"><strong>白い朝</strong></a>
+  <a class="part" href="./02%20月の復讐.html"><strong>月の復讐</strong></a>
+  <a class="part" href="./03%20ここ.html"><strong>ここ</strong></a>
+  <a class="part" href="./04%20白と青.html"><strong>白と青</strong></a>
+  <a class="part" href="./05%20器.html"><strong>器</strong></a>
 </nav></section>
 <section class="section" aria-labelledby="essay-title">
 <h2 class="section-title" id="essay-title">作者エッセイ</h2>
@@ -347,5 +349,25 @@ footer .copyright { margin-top: 17px; color: #e2e7e9; opacity: 1; }
 })();
 </script>
 
+<script>(function(){
+const nav=document.querySelector('.section[aria-labelledby="contents-title"] .contents');
+if(!nav)return;
+const links=[...nav.querySelectorAll('.part')];
+if(links.length!==5)return;
+function arrange(){
+ if(window.innerWidth<=700){nav.style.removeProperty('display');nav.style.removeProperty('grid-template-columns');nav.style.removeProperty('justify-content');nav.style.removeProperty('column-gap');nav.style.removeProperty('width');links.forEach(a=>a.style.removeProperty('transform'));return;}
+ nav.style.display='flex';nav.style.justifyContent='space-between';nav.style.columnGap='0';nav.style.width='100%';
+ links.forEach(a=>{a.style.transform='none';a.style.flex='0 0 auto';});
+ const first=links[0].querySelector('strong'),last=links[4].querySelector('strong');
+ const left=first.getBoundingClientRect().left;
+ const right=last.getBoundingClientRect().right;
+ const target=window.innerWidth-left;
+ const delta=right-target;
+ // Match the outer margins first, then distribute remaining space equally.
+ nav.style.width=(nav.getBoundingClientRect().width-delta)+'px';
+}
+arrange();window.addEventListener('resize',arrange);
+if(document.fonts)document.fonts.ready.then(arrange);
+})();</script>
 </body>
 </html>
