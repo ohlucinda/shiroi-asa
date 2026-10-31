@@ -200,7 +200,8 @@ footer { text-align:center; padding:0 2px; color:#5c5a59; opacity:1; font-size:1
     width: auto;
   }
   .section[aria-labelledby="contents-title"] .contents {
-    max-width: none;
+    width: 100%;
+    max-width: 980px;
     margin-inline: 0;
     grid-template-columns: repeat(5, max-content);
     justify-content: space-between;
@@ -383,29 +384,7 @@ header h1{min-width:0;max-width:100%;overflow-wrap:break-word}
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('is-open')) close(); });
 })();
 </script>
-<script>
-/* Align the first chapter's left edge with the Contents heading and mirror
-   that exact text edge at the fifth chapter's right edge. Desktop only. */
-(function () {
-  const section = document.querySelector('.section[aria-labelledby="contents-title"]');
-  if (!section) return;
-  const heading = section.querySelector('.section-title');
-  const chapters = section.querySelector('.contents');
-  if (!heading || !chapters) return;
-  function alignChapterEdges() {
-    if (window.innerWidth <= 700) {
-      chapters.style.removeProperty('width');
-      return;
-    }
-    const left = heading.getBoundingClientRect().left;
-    chapters.style.width = Math.max(0, window.innerWidth - 2 * left) + 'px';
-  }
-  alignChapterEdges();
-  window.addEventListener('resize', alignChapterEdges, { passive: true });
-  if (document.fonts && document.fonts.ready)
-    document.fonts.ready.then(alignChapterEdges);
-})();
-</script>
+
 </body>
 </html>
 
