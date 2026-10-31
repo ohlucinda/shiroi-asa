@@ -210,11 +210,13 @@ footer { text-align:center; padding:0 2px; color:#5c5a59; opacity:1; font-size:1
     padding-left: 0;
     padding-right: 0;
   }
-  /* Optical alignment: chapter numerals have a slightly smaller glyph
-     left bearing than their larger titles. Keep the fifth unchanged. */
-  .section[aria-labelledby="contents-title"] .part:nth-child(-n+4) small {
+  /* Keep each chapter label and title at the same actual CSS start edge. */
+  .section[aria-labelledby="contents-title"] .part small,
+  .section[aria-labelledby="contents-title"] .part strong {
     display: block;
-    padding-left: 3px;
+    padding-left: 0;
+    margin-left: 0;
+    text-align: left;
   }
 }
 
