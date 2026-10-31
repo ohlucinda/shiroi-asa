@@ -1,0 +1,40 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>白い朝｜書籍配置の試作</title></head>
+<body><p id="loading" style="padding:2rem">読み込み中…</p>
+<script>
+(async()=>{
+try{
+const response=await fetch("/",{cache:"no-store"});
+if(!response.ok)throw Error("HTTP "+response.status);
+let html=await response.text();
+const styles=`
+/* Book layout preview — homepage remains unchanged */
+.read-books-row{max-width:980px;margin:0 auto;padding:54px 0 86px;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:48px;}
+.read-books-row .read-start{padding:0;text-align:left;align-self:center}
+.book-collection{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.book-collection-label{font-size:14px;letter-spacing:0;opacity:.76}
+.book-cover-list{display:flex;gap:20px;align-items:flex-start}
+.book-cover-list a{display:block;line-height:0}
+.book-cover-list img{display:block;width:92px;height:auto;aspect-ratio:1600/2560;object-fit:cover}
+@media(max-width:700px){
+.read-books-row{padding:38px 0 66px;column-gap:16px}
+.book-cover-list{gap:10px}
+.book-cover-list img{width:clamp(56px,11vw,74px)}
+.book-collection-label{font-size:14px}
+.read-books-row .read-start a{font-size:clamp(15px,3.2vw,19px)}
+}
+@media(max-width:390px){
+.read-books-row{grid-template-columns:1fr;row-gap:28px}
+.book-cover-list img{width:75px}
+}
+`;
+html=html.replace("</style>",styles+"</style>");
+const original='<div class="read-start"><a href="./01%20白い朝.html">はじめから読む</a></div>';
+const covers='<div class="read-books-row"><div class="read-start"><a href="./01%20白い朝.html">はじめから読む</a></div><div class="book-collection"><span class="book-collection-label">Kindle電子書籍</span><div class="book-cover-list"><a href="https://www.amazon.co.jp/dp/B0HNV76ZW8" target="_blank" rel="noopener noreferrer" aria-label="蜜 Amazonで見る"><img src="https://m.media-amazon.com/images/P/B0HNV76ZW8.01._SCLZZZZZZZ_SX500_.jpg" alt="蜜 表紙"></a><a href="https://www.amazon.co.jp/dp/B0HPT8RC6V" target="_blank" rel="noopener noreferrer" aria-label="続・蜜 Amazonで見る"><img src="https://m.media-amazon.com/images/P/B0HPT8RC6V.01._SCLZZZZZZZ_SX500_.jpg" alt="続・蜜 表紙"></a></div></div></div>';
+if(!html.includes(original))throw Error("Original read link missing");
+html=html.replace(original,covers);
+html=html.replace("<head>","<head><base href=\"https://shiroiasa.ohlucinda.com/\">");
+html=html.replace('href="/en/" lang="en"','href="/en/" lang="en"');
+document.open();document.write(html);document.close();
+}catch(e){document.getElementById("loading").textContent="試作の読み込みに失敗: "+e.message;}
+})();
+</script></body></html>
