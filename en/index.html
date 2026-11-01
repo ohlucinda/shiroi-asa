@@ -34,6 +34,9 @@ footer { background:#506a84; color:#fff; text-align:center; padding:35px 16px 31
 .footer-part { margin-bottom:12px; }
 .footer-row { display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap; }
 footer a { color:inherit; }
+.footer-row a { display:inline-block; transition:transform .18s ease,color .18s ease; }
+.footer-row a:hover,.footer-row a:focus-visible { color:#ffe0ad; transform:translateY(3px); }
+@media (prefers-reduced-motion:reduce) { .footer-row a { transition:none; } .footer-row a:hover,.footer-row a:focus-visible { transform:none; } }
 .copyright { margin-top:15px; font-size:12px; }
 /* Existing video modal behavior, simplified visual treatment. */
 .video-modal { position:fixed; z-index:30; inset:0; display:none; align-items:center; justify-content:center; background:rgba(6,15,25,.88); padding:48px 20px; }
