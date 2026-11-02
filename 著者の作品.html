@@ -11,6 +11,8 @@
 html{background:var(--paper)}
 body{margin:0;min-height:100svh;display:flex;flex-direction:column;background:var(--paper);color:var(--ink);font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif CJK JP",serif;}
 a{color:inherit}
+.language-switch { position:absolute; top:20px; right:clamp(18px,4vw,52px); font-size:13px; text-decoration:none; letter-spacing:.04em; color:#596574; }
+.language-switch:hover,.language-switch:focus-visible { text-decoration:underline; }
 main{flex:1}
 .page{width:min(930px,calc(100% - 60px));margin:0 auto;padding:112px 0 72px}
 h1{font-size:clamp(28px,3vw,38px);font-weight:400;text-align:center;letter-spacing:.13em;margin:0 0 106px}
@@ -58,6 +60,7 @@ footer a{color:inherit}
 </style>
 </head>
 <body>
+<a class="language-switch" href="en/authors-works.html" lang="en" hreflang="en" aria-label="English">English</a>
 <main>
 <div class="page">
 <h1>著者の作品</h1>
